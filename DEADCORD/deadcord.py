@@ -23,10 +23,8 @@ try:
     from discord import Permissions
     from discord.ext import commands
 except Exception:
-    print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'Please install requirements')
+    print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Please install requirements')
 
-### VARIABLES AND STUFF ###
-### DO NOT TOUCH ANY OF THIS UNLESS YOU KNOW WHAT YOU'RE DOING ###
 class Selfbot():
     __version__ = 0.1
 
@@ -54,8 +52,7 @@ def Nitro():
     return f'https://discord.gift/{code}'
 
 def RandomColor():
-    randcolor = discord.Color(random.randint(0x000000, 0xFFFFFF))
-    return randcolor
+    return discord.Color(random.randint(0x000000, 0xFFFFFF))
 
 Deadcord.annoy = None
 replies = ['Shut up', 'Did not ask', 'Do you ever stop', 'Shh', 'Sup', 'Stop it', 'Stop typing', 'Go away']
@@ -63,11 +60,7 @@ replies = ['Shut up', 'Did not ask', 'Do you ever stop', 'Shh', 'Sup', 'Stop it'
 ### MAIN CODE ###
 @Deadcord.event
 async def on_ready():
-    if nitro_sniper:
-        nitro = f'{Fore.GREEN}Active'
-    else:
-        nitro = f'{Fore.RED}Disabled'
-        
+    nitro = f'{Fore.GREEN}Active' if nitro_sniper else f'{Fore.RED}Disabled'
     print(f'''{Fore.MAGENTA}                            ██████╗ ███████╗ █████╗ ██████╗  ██████╗ ██████╗ ██████╗ ██████╗ 
                             ██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔════╝██╔═══██╗██╔══██╗██╔══██╗
                             ██║  ██║█████╗  ███████║██║  ██║██║     ██║   ██║██████╔╝██║  ██║
@@ -89,16 +82,16 @@ async def on_ready():
 @Deadcord.event
 async def on_message(message):
     if Deadcord.annoy is not None and Deadcord.annoy.id == message.author.id:
-        await message.channel.send(random.choice(replies) + f' {message.author.name}')
+        await message.channel.send(f'{random.choice(replies)} {message.author.name}')
     await Deadcord.process_commands(message)
 
 
 @Deadcord.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'Command not found')
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Command not found')
     elif isinstance(error, commands.MissingRequiredArgument):
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'Your missing something')
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Your missing something')
 ### HELP COMMAND ###
 @Deadcord.command()
 async def help(ctx):
@@ -106,12 +99,36 @@ async def help(ctx):
     print("")
     print(' ' * 4 + Fore.MAGENTA + 'DEADCORD HELP COMMANDS')
     print("")
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}general', Fore.GREEN + '|', Fore.WHITE + 'general command list')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nsfw', Fore.GREEN + '   |', Fore.WHITE + 'nsfw command list')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}troll', Fore.GREEN + '  |', Fore.WHITE + 'troll command list')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}admin', Fore.GREEN + '  |', Fore.WHITE + 'admin command list')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}misc', Fore.GREEN + '   |', Fore.WHITE + 'misc command list')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}selfbot', Fore.GREEN + '|', Fore.WHITE + 'selfbot command list')
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}general',
+        f'{Fore.GREEN}|',
+        f'{Fore.WHITE}general command list',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nsfw',
+        f'{Fore.GREEN}   |',
+        f'{Fore.WHITE}nsfw command list',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}troll',
+        f'{Fore.GREEN}  |',
+        f'{Fore.WHITE}troll command list',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}admin',
+        f'{Fore.GREEN}  |',
+        f'{Fore.WHITE}admin command list',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}misc',
+        f'{Fore.GREEN}   |',
+        f'{Fore.WHITE}misc command list',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}selfbot',
+        f'{Fore.GREEN}|',
+        f'{Fore.WHITE}selfbot command list',
+    )
     print("")
 
 @Deadcord.command()
@@ -120,30 +137,126 @@ async def general(ctx):
     print("")
     print(' ' * 4 + Fore.MAGENTA + 'GENERAL COMMANDS')
     print("")
-    print (Fore.MAGENTA + f'{Deadcord.command_prefix}slap <user>', Fore.GREEN + '             |', Fore.WHITE + 'slaps a user')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}poke <user>', Fore.GREEN + '             |', Fore.WHITE + 'pokes a user')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}tickle <user>', Fore.GREEN + '           |', Fore.WHITE + 'tickles a user')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}woof', Fore.GREEN + '                    |', Fore.WHITE + 'displays a dog pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}meow', Fore.GREEN + '                    |', Fore.WHITE + 'displays a cat pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}pat <user>', Fore.GREEN + '              |', Fore.WHITE + 'pats a user')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}tableflip', Fore.GREEN + '               |', Fore.WHITE + 'flips table')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}shrug', Fore.GREEN + '                   |', Fore.WHITE + 'shrugs')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}unflip', Fore.GREEN + '                  |', Fore.WHITE + 'unflips table')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}tts <text>', Fore.GREEN + '              |', Fore.WHITE + 'tts text')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}kanye', Fore.GREEN + '                   |', Fore.WHITE + 'kanye quote')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}fu', Fore.GREEN + '                      |', Fore.WHITE + 'animated fu message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}noob', Fore.GREEN + '                    |', Fore.WHITE + 'animated noob message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}lol', Fore.GREEN + '                     |', Fore.WHITE + 'flashing lol message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}pop', Fore.GREEN + '                     |', Fore.WHITE + 'pop minigame')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}rofl', Fore.GREEN + '                    |', Fore.WHITE + 'rofl gif')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}number', Fore.GREEN + '                  |', Fore.WHITE + 'picks random number')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}coin', Fore.GREEN + '                    |', Fore.WHITE + 'coinflip')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}pick <option1> <option2>', Fore.GREEN + '|', Fore.WHITE + 'picks between option 1 and 2')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}dick <member>', Fore.GREEN + '           |', Fore.WHITE + 'dick size')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}n1c', Fore.GREEN + '                     |', Fore.WHITE + 'no one cares gif')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}arcade', Fore.GREEN + '                  |', Fore.WHITE + 'jackpot machine')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}votekick <member>', Fore.GREEN + '       |', Fore.WHITE + 'starts a votekick')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}DEADCORD', Fore.GREEN + '                |', Fore.WHITE + 'Displays DEADCORD ASCII')
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}slap <user>',
+        f'{Fore.GREEN}             |',
+        f'{Fore.WHITE}slaps a user',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}poke <user>',
+        f'{Fore.GREEN}             |',
+        f'{Fore.WHITE}pokes a user',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}tickle <user>',
+        f'{Fore.GREEN}           |',
+        f'{Fore.WHITE}tickles a user',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}woof',
+        f'{Fore.GREEN}                    |',
+        f'{Fore.WHITE}displays a dog pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}meow',
+        f'{Fore.GREEN}                    |',
+        f'{Fore.WHITE}displays a cat pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}pat <user>',
+        f'{Fore.GREEN}              |',
+        f'{Fore.WHITE}pats a user',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}tableflip',
+        f'{Fore.GREEN}               |',
+        f'{Fore.WHITE}flips table',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}shrug',
+        f'{Fore.GREEN}                   |',
+        f'{Fore.WHITE}shrugs',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}unflip',
+        f'{Fore.GREEN}                  |',
+        f'{Fore.WHITE}unflips table',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}tts <text>',
+        f'{Fore.GREEN}              |',
+        f'{Fore.WHITE}tts text',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}kanye',
+        f'{Fore.GREEN}                   |',
+        f'{Fore.WHITE}kanye quote',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}fu',
+        f'{Fore.GREEN}                      |',
+        f'{Fore.WHITE}animated fu message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}noob',
+        f'{Fore.GREEN}                    |',
+        f'{Fore.WHITE}animated noob message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}lol',
+        f'{Fore.GREEN}                     |',
+        f'{Fore.WHITE}flashing lol message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}pop',
+        f'{Fore.GREEN}                     |',
+        f'{Fore.WHITE}pop minigame',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}rofl',
+        f'{Fore.GREEN}                    |',
+        f'{Fore.WHITE}rofl gif',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}number',
+        f'{Fore.GREEN}                  |',
+        f'{Fore.WHITE}picks random number',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}coin',
+        f'{Fore.GREEN}                    |',
+        f'{Fore.WHITE}coinflip',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}pick <option1> <option2>',
+        f'{Fore.GREEN}|',
+        f'{Fore.WHITE}picks between option 1 and 2',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}dick <member>',
+        f'{Fore.GREEN}           |',
+        f'{Fore.WHITE}dick size',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}n1c',
+        f'{Fore.GREEN}                     |',
+        f'{Fore.WHITE}no one cares gif',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}arcade',
+        f'{Fore.GREEN}                  |',
+        f'{Fore.WHITE}jackpot machine',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}votekick <member>',
+        f'{Fore.GREEN}       |',
+        f'{Fore.WHITE}starts a votekick',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}DEADCORD',
+        f'{Fore.GREEN}                |',
+        f'{Fore.WHITE}Displays DEADCORD ASCII',
+    )
 
 @Deadcord.command()
 async def nsfw(ctx):
@@ -151,20 +264,76 @@ async def nsfw(ctx):
     print("")
     print(' ' * 10 + 'NSFW COMMANDS')
     print("")
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nekos_pussygif', Fore.GREEN + ' |', Fore.WHITE + 'nekos pussygif')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nekos_cum', Fore.GREEN + '      |', Fore.WHITE + 'nekos cum pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nekos_tits', Fore.GREEN + '     |', Fore.WHITE + 'nekos tits pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nekos_feet', Fore.GREEN + '     |', Fore.WHITE + 'nekos feet pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nekos_bj', Fore.GREEN + '       |', Fore.WHITE + 'nekos blowjob pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nekos_lewd', Fore.GREEN + '     |', Fore.WHITE + 'nekos lewd pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nekos_trap', Fore.GREEN + '     |', Fore.WHITE + 'nekos trap pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nekos_wallpaper', Fore.GREEN + '|', Fore.WHITE + 'nekos wallpaper')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}ass', Fore.GREEN + '            |', Fore.WHITE + 'ass pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}pussy', Fore.GREEN + '          |', Fore.WHITE + 'pussy pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}thigh', Fore.GREEN + '          |', Fore.WHITE + 'thigh pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}pgif', Fore.GREEN + '           |', Fore.WHITE + 'porn gif')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}anal', Fore.GREEN + '           |', Fore.WHITE + 'anal pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}fourk', Fore.GREEN + '          |', Fore.WHITE + '4k pic')
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nekos_pussygif',
+        f'{Fore.GREEN} |',
+        f'{Fore.WHITE}nekos pussygif',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nekos_cum',
+        f'{Fore.GREEN}      |',
+        f'{Fore.WHITE}nekos cum pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nekos_tits',
+        f'{Fore.GREEN}     |',
+        f'{Fore.WHITE}nekos tits pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nekos_feet',
+        f'{Fore.GREEN}     |',
+        f'{Fore.WHITE}nekos feet pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nekos_bj',
+        f'{Fore.GREEN}       |',
+        f'{Fore.WHITE}nekos blowjob pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nekos_lewd',
+        f'{Fore.GREEN}     |',
+        f'{Fore.WHITE}nekos lewd pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nekos_trap',
+        f'{Fore.GREEN}     |',
+        f'{Fore.WHITE}nekos trap pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nekos_wallpaper',
+        f'{Fore.GREEN}|',
+        f'{Fore.WHITE}nekos wallpaper',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}ass',
+        f'{Fore.GREEN}            |',
+        f'{Fore.WHITE}ass pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}pussy',
+        f'{Fore.GREEN}          |',
+        f'{Fore.WHITE}pussy pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}thigh',
+        f'{Fore.GREEN}          |',
+        f'{Fore.WHITE}thigh pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}pgif',
+        f'{Fore.GREEN}           |',
+        f'{Fore.WHITE}porn gif',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}anal',
+        f'{Fore.GREEN}           |',
+        f'{Fore.WHITE}anal pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}fourk',
+        f'{Fore.GREEN}          |',
+        f'{Fore.WHITE}4k pic',
+    )
 
 @Deadcord.command()
 async def troll(ctx):
@@ -172,16 +341,56 @@ async def troll(ctx):
     print("")
     print(' ' * 19 + Fore.MAGENTA + 'TROLL COMMANDS')
     print("")
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}deadcord_spam <message> <duration>', Fore.GREEN + '|', Fore.WHITE + 'spams message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}everyone <duration>', Fore.GREEN + '               |', Fore.WHITE + 'spams @everyone')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}blank_spam <duration>', Fore.GREEN + '             |', Fore.WHITE + 'spams blank message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}annoy <member>', Fore.GREEN + '                    |', Fore.WHITE + 'starts annoying member')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}stop_annoy', Fore.GREEN + '                        |', Fore.WHITE + 'stops annoying member')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}channel_spam', Fore.GREEN + '                      |', Fore.WHITE + 'channel spam')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}everyone_admin', Fore.GREEN + '                    |', Fore.WHITE + 'tries to give everyone admin')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}mass_ban', Fore.GREEN + '                          |', Fore.WHITE + 'tries to mass ban everyone')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}nitro', Fore.GREEN + '                             |', Fore.WHITE + 'fake nitro')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}deadcord_wipe', Fore.GREEN + '                     |', Fore.WHITE + 'server wipe')
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}deadcord_spam <message> <duration>',
+        f'{Fore.GREEN}|',
+        f'{Fore.WHITE}spams message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}everyone <duration>',
+        f'{Fore.GREEN}               |',
+        f'{Fore.WHITE}spams @everyone',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}blank_spam <duration>',
+        f'{Fore.GREEN}             |',
+        f'{Fore.WHITE}spams blank message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}annoy <member>',
+        f'{Fore.GREEN}                    |',
+        f'{Fore.WHITE}starts annoying member',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}stop_annoy',
+        f'{Fore.GREEN}                        |',
+        f'{Fore.WHITE}stops annoying member',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}channel_spam',
+        f'{Fore.GREEN}                      |',
+        f'{Fore.WHITE}channel spam',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}everyone_admin',
+        f'{Fore.GREEN}                    |',
+        f'{Fore.WHITE}tries to give everyone admin',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}mass_ban',
+        f'{Fore.GREEN}                          |',
+        f'{Fore.WHITE}tries to mass ban everyone',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}nitro',
+        f'{Fore.GREEN}                             |',
+        f'{Fore.WHITE}fake nitro',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}deadcord_wipe',
+        f'{Fore.GREEN}                     |',
+        f'{Fore.WHITE}server wipe',
+    )
 
 @Deadcord.command()
 async def admin(ctx):
@@ -189,12 +398,36 @@ async def admin(ctx):
     print("")
     print(' ' * 10 + Fore.MAGENTA + 'ADMIN COMMANDS')
     print("")
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}copy_guild', Fore.GREEN + '    |', Fore.WHITE + 'copies a guild')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}pfp <member>', Fore.GREEN + '  |', Fore.WHITE + 'displays members profile pic')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}addRole <name>', Fore.GREEN + '|', Fore.WHITE + 'creates role')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}rmRole <name>', Fore.GREEN + ' |', Fore.WHITE + 'deletes a role')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}kick <member>', Fore.GREEN + ' |', Fore.WHITE + 'kicks member')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}ban <member>', Fore.GREEN + '  |', Fore.WHITE + 'bans a member')
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}copy_guild',
+        f'{Fore.GREEN}    |',
+        f'{Fore.WHITE}copies a guild',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}pfp <member>',
+        f'{Fore.GREEN}  |',
+        f'{Fore.WHITE}displays members profile pic',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}addRole <name>',
+        f'{Fore.GREEN}|',
+        f'{Fore.WHITE}creates role',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}rmRole <name>',
+        f'{Fore.GREEN} |',
+        f'{Fore.WHITE}deletes a role',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}kick <member>',
+        f'{Fore.GREEN} |',
+        f'{Fore.WHITE}kicks member',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}ban <member>',
+        f'{Fore.GREEN}  |',
+        f'{Fore.WHITE}bans a member',
+    )
 
 @Deadcord.command()
 async def misc(ctx):
@@ -202,14 +435,46 @@ async def misc(ctx):
     print("")
     print(' ' * 10 + Fore.MAGENTA + 'MISC COMMANDS')
     print("")
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}pass_gen <length>', Fore.GREEN + '  |', Fore.WHITE + 'password generator')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}spoiler <message>', Fore.GREEN + '  |', Fore.WHITE + 'spoiler message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}bold <message>', Fore.GREEN + '     |', Fore.WHITE + 'bold message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}itl <message>', Fore.GREEN + '      |', Fore.WHITE + 'italic message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}underline <message>', Fore.GREEN + '|', Fore.WHITE + 'underlined message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}geoip <ip>', Fore.GREEN + '         |', Fore.WHITE + 'geolocation of IP')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}encrypt', Fore.GREEN + '            |', Fore.WHITE + 'sends encrypted message')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}decrypt <message>', Fore.GREEN + '  |', Fore.WHITE + 'shows decrypted message')
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}pass_gen <length>',
+        f'{Fore.GREEN}  |',
+        f'{Fore.WHITE}password generator',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}spoiler <message>',
+        f'{Fore.GREEN}  |',
+        f'{Fore.WHITE}spoiler message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}bold <message>',
+        f'{Fore.GREEN}     |',
+        f'{Fore.WHITE}bold message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}itl <message>',
+        f'{Fore.GREEN}      |',
+        f'{Fore.WHITE}italic message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}underline <message>',
+        f'{Fore.GREEN}|',
+        f'{Fore.WHITE}underlined message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}geoip <ip>',
+        f'{Fore.GREEN}         |',
+        f'{Fore.WHITE}geolocation of IP',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}encrypt',
+        f'{Fore.GREEN}            |',
+        f'{Fore.WHITE}sends encrypted message',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}decrypt <message>',
+        f'{Fore.GREEN}  |',
+        f'{Fore.WHITE}shows decrypted message',
+    )
 
 @Deadcord.command()
 async def selfbot(ctx):
@@ -217,14 +482,46 @@ async def selfbot(ctx):
     print("")
     print(' ' * 14 + Fore.MAGENTA + 'SELFBOT COMMANDS')
     print("")
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}shutdown', Fore.GREEN + '            |', Fore.WHITE + 'shutdown selfbot')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}change_prefix <prefix>', Fore.GREEN + '     |', Fore.WHITE + 'changes selfbot prefix')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}playing <game>', Fore.GREEN + '      |', Fore.WHITE + 'playing status')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}streaming <name>', Fore.GREEN + '    |', Fore.WHITE + 'streaming status')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}listening <name>', Fore.GREEN + '    |', Fore.WHITE + 'listening status')
-    print(Fore.RED + f'{Deadcord.command_prefix}[DISABLED] bug <explain>', Fore.GREEN + '       |', Fore.RED + 'sends bug to devs')
-    print(Fore.RED + f'{Deadcord.command_prefix}[DISABLED] suggestion <content>', Fore.GREEN + '|', Fore.RED + 'sends suggestion to the devs')
-    print(Fore.MAGENTA + f'{Deadcord.command_prefix}check <token>', Fore.GREEN + '|', Fore.WHITE + 'return state of a token and its details')
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}shutdown',
+        f'{Fore.GREEN}            |',
+        f'{Fore.WHITE}shutdown selfbot',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}change_prefix <prefix>',
+        f'{Fore.GREEN}     |',
+        f'{Fore.WHITE}changes selfbot prefix',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}playing <game>',
+        f'{Fore.GREEN}      |',
+        f'{Fore.WHITE}playing status',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}streaming <name>',
+        f'{Fore.GREEN}    |',
+        f'{Fore.WHITE}streaming status',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}listening <name>',
+        f'{Fore.GREEN}    |',
+        f'{Fore.WHITE}listening status',
+    )
+    print(
+        f'{Fore.RED}{Deadcord.command_prefix}[DISABLED] bug <explain>',
+        f'{Fore.GREEN}       |',
+        f'{Fore.RED}sends bug to devs',
+    )
+    print(
+        f'{Fore.RED}{Deadcord.command_prefix}[DISABLED] suggestion <content>',
+        f'{Fore.GREEN}|',
+        f'{Fore.RED}sends suggestion to the devs',
+    )
+    print(
+        f'{Fore.MAGENTA}{Deadcord.command_prefix}check <token>',
+        f'{Fore.GREEN}|',
+        f'{Fore.WHITE}return state of a token and its details',
+    )
 
 ### GENERAL COMMANDS ###
 @Deadcord.command()
@@ -309,7 +606,7 @@ async def kanye(ctx):
 @Deadcord.command()
 async def fu(ctx):
     await ctx.message.delete()
-    message = await ctx.send(f"Fuck You")
+    message = await ctx.send("Fuck You")
     await message.edit(content="uck You")
     await message.edit(content="ck You")
     await message.edit(content="k You")
@@ -370,7 +667,7 @@ async def dick(ctx, *, member : discord.Member):
     await ctx.message.delete()
     m = member.mention
     c = ['8=D', '8==D', '8===D', '8====D', '8=====D']
-    await ctx.send(f'{m} dick size is ' + random.choice(c))
+    await ctx.send(f'{m} dick size is {random.choice(c)}')
 
 @Deadcord.command()
 async def arcade(ctx):
@@ -513,64 +810,70 @@ async def fourk(ctx):
 @Deadcord.command()
 async def deadcord_spam(ctx, msg : str = None, *, dur : int = None):
     if msg is None:
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'Please give a message to spam')
+        print(
+            f'{Fore.MAGENTA}[DEADCORD]',
+            f'{Fore.WHITE}Please give a message to spam',
+        )
     elif dur is None:
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'No duration given')
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}No duration given')
     else:
         await ctx.message.delete()
-        amt = int(dur)
-        n=0                                     
-        while(n<=amt):
+        amt = dur
+        n=0
+        while (n<=amt):
             await ctx.send(f'{msg}')
-            n = n+1
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'Stopped DeadCord_spam')
+            n += 1
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Stopped DeadCord_spam')
 
 @Deadcord.command()
 async def everyone(ctx, *, dur : int = None):
     if dur is None:
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'No duration given')
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}No duration given')
     else:
         await ctx.message.delete()
-        amt = int(dur)
-        n=0                                 
-        while(n<=amt):
+        amt = dur
+        n=0
+        while (n<=amt):
             await ctx.send("@everyone")
-            n = n+1
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'Stopped spamming everyone')
+            n += 1
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Stopped spamming everyone')
 
 @Deadcord.command()
 async def blank_spam(ctx, *, dur : int = None):
     if dur is None:
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'No duration given')
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}No duration given')
     else:
         await ctx.message.delete()
-        amt = int(dur)
+        amt = dur
         n=0
-        while(n<=amt):                  
+        while (n<=amt):          
             await ctx.send("** **")
-            n = n+1
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'Stopped blank_spam')
+            n += 1
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Stopped blank_spam')
 
 @Deadcord.command()
 async def annoy(ctx, *, user : discord.Member):
     await ctx.message.delete()
     Deadcord.annoy = user
-    print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + f'Now annoying {user}')
+    print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Now annoying {user}')
 
 @Deadcord.command()
 async def stop_annoy(ctx):
     await ctx.message.delete()
     if Deadcord.annoy is None:
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'You was not annoying anyone')
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}You was not annoying anyone')
         return
     else:
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + f'Stopped annoying ' + str(Deadcord.annoy))
+        print(
+            f'{Fore.MAGENTA}[DEADCORD]',
+            f'{Fore.WHITE}Stopped annoying {str(Deadcord.annoy)}',
+        )
         Deadcord.annoy = None
 
 @Deadcord.command()
 async def channel_spam(ctx):
     await ctx.message.delete()
-    for i in range(250):
+    for _ in range(250):
         try:
             await ctx.guild.create_text_channel(name='DeadCord')
         except:
@@ -583,9 +886,12 @@ async def everyone_admin(ctx):
     try:
         role = discord.utils.get(guild.roles, name = "@everyone")
         await role.edit(permissions = Permissions.all())
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'I have given everyone admin')
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}I have given everyone admin')
     except:
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'Could not give everyone admin')
+        print(
+            f'{Fore.MAGENTA}[DEADCORD]',
+            f'{Fore.WHITE}Could not give everyone admin',
+        )
 
 @Deadcord.command()
 async def mass_ban(ctx):
@@ -595,9 +901,9 @@ async def mass_ban(ctx):
     for member in guild.members:
         try:
             await member.ban()
-            print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + f'Banning {member.name}')
+            print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Banning {member.name}')
         except:
-            print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + f'Could not ban {member.name}')
+            print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Could not ban {member.name}')
 
 @Deadcord.command()
 async def nitro(ctx):
@@ -611,9 +917,12 @@ async def deadcord_wipe(ctx):
     try:
         role = discord.utils.get(guild.roles, name = '@everyone')
         await role.edit(permissions = Permissions.all())
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'I have given everyone admin')
+        print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}I have given everyone admin')
     except:
-        print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + 'I could not give everyone admin')
+        print(
+            f'{Fore.MAGENTA}[DEADCORD]',
+            f'{Fore.WHITE}I could not give everyone admin',
+        )
 
     await ctx.guild.edit(name='DeadCord')
 
@@ -623,9 +932,9 @@ async def deadcord_wipe(ctx):
     for role in guild.roles:
         try:
             await role.delete()
-            print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + f'Deleted {role}')
+            print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Deleted {role}')
         except:
-            print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + f'Could not delete {role}')
+            print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}Could not delete {role}')
 
 ### ADMIN COMMANDS ###
 @Deadcord.command()
@@ -659,13 +968,13 @@ async def addRole(ctx, nm):
     await ctx.message.delete()
     guild = ctx.guild
     await guild.create_role(name=nm)
-    print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + f'{nm} created')
+    print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}{nm} created')
 
 @Deadcord.command()
 async def rmRole(ctx, nm: discord.Role):
     await ctx.message.delete()
     await nm.delete()
-    print(Fore.MAGENTA + '[DEADCORD]', Fore.WHITE + f'{nm} deleted')
+    print(f'{Fore.MAGENTA}[DEADCORD]', f'{Fore.WHITE}{nm} deleted')
 
 @Deadcord.command()
 async def kick(ctx, member : discord.Member, *, reason=None):
